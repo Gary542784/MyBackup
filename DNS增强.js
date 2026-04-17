@@ -204,7 +204,7 @@ const dnsConfig = {
   "nameserver-policy": {
   "geosite:private,cn": domesticNameservers
   }
-};
+},
   "cache-size": 8192,    // 适中缓存大小
   "dns-cache": true,     // 启用DNS缓存
   "dns-hijack": ["8.8.8.8:53", "8.8.4.4:53"],  // DNS劫持优化
