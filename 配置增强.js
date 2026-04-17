@@ -1,9 +1,9 @@
 // 常量定义
-const test_interval = 600;
+const test_interval = 3600;
 const test_tolerance = 100;
 const groupBaseOption = {
-  "interval": 600,
-  "timeout": 3000,
+  "interval": 3600,
+  "timeout": 5000,
   "url": "https://www.gstatic.com/generate_204",
   "lazy": true,
   "max-failed-times": 2,
@@ -180,7 +180,7 @@ const dnsConfig = {
   "use-system-hosts": false,
   "cache-algorithm": "arc",
   "enhanced-mode": "fake-ip",
-  "fake-ip-range": "198.18.0.1/16",
+  "fake-ip-range": "198.18.0.1/24",
   "fake-ip-filter": [
     "+.lan",
     "+.local",
@@ -194,12 +194,25 @@ const dnsConfig = {
     "time.*.gov",
     "pool.ntp.org",
     "localhost.work.weixin.qq.com"
+    "+.apple.com",       // Apple服务直连
+    "+.icloud.com",      // iCloud服务直连
+    "+.googleapis.com"   // Google服务优化
   ],
   "default-nameserver": ["223.5.5.5","119.29.29.29"],
   "nameserver": [...foreignNameservers],
   "proxy-server-nameserver":[...domesticNameservers],
   "nameserver-policy": {
   "geosite:private,cn": domesticNameservers
+  }
+};
+  "cache-size": 8192,    // 适中缓存大小
+  "dns-cache": true,     // 启用DNS缓存
+  "dns-hijack": ["8.8.8.8:53", "8.8.4.4:53"],  // DNS劫持优化
+  "fallback": ["https://1.1.1.1/dns-query", "https://8.8.8.8/dns-query"],
+  "fallback-filter": {
+    "geoip": true,
+    "geoip-code": "CN",
+    "ipcidr": ["240.0.0.0/4"]
   }
 };
 // 规则集通用配置
